@@ -1,6 +1,6 @@
 package lime.utils;
 
-import flash.system.System;
+import openfl.system.System;
 import haxe.PosInfos;
 #if sys
 import sys.io.File;
