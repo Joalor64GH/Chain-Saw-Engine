@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@main
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
@@ -33,21 +33,21 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.3.3
 
       - name: Install Haxelibs
         run: |
           haxelib --quiet install lime 7.9.0
           haxelib --quiet install openfl 9.1.0
-          haxelib --quiet install flixel
+          haxelib --quiet --never install flixel 5.6.0
           haxelib --quiet --never run lime setup
           haxelib --quiet install flixel-ui
           haxelib --quiet install flixel-addons
           haxelib --quiet install polymod
           haxelib --quiet install hscript
           haxelib --quiet install hxcpp-debug-server
+          haxelib --quiet install extension-androidtools 1.4.0
           haxelib --quiet git spine https://github.com/jeremyfa/spine-hx.git
-          haxelib --quiet git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools.git
 
       - name: Setup Lime
         run: |
@@ -66,24 +66,24 @@ jobs:
         run: haxelib run lime build android -Dnightly
 
       - name: Publish Artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@main
         with:
           name: androidBuild
           path: export/release/android/bin/app/build/outputs/apk/debug
   buildWindows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@main
 
       - uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.3.3
 
       - name: Install Haxelibs
         run: |
           haxelib --quiet install lime 7.9.0
           haxelib --quiet install openfl 9.1.0
-          haxelib --quiet install flixel
+          haxelib --quiet --never install flixel 5.6.0
           haxelib --quiet --never run lime setup
           haxelib --quiet install flixel-ui
           haxelib --quiet install flixel-addons
@@ -105,7 +105,7 @@ jobs:
         run: haxelib run lime build windows -Dnightly
 
       - name: Publish Artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@main
         with:
           name: windowsBuild
           path: export/release/windows/bin
