@@ -37,13 +37,13 @@ jobs:
 
       - name: Install Haxelibs
         run: |
-          haxelib --quiet install lime 7.9.0
-          haxelib --quiet install openfl 9.1.0
-          haxelib --quiet --never install flixel 5.6.0
+          haxelib --quiet install lime
+          haxelib --quiet install openfl
+          haxelib --quiet --never install flixel 5.2.2
           haxelib --quiet --never run lime setup
           haxelib --quiet install flixel-ui
-          haxelib --quiet install flixel-addons
-          haxelib --quiet install polymod
+          haxelib --quiet git flixel-addons https://github.com/HaxeFlixel/flixel-addons.git dev
+          haxelib --quiet install polymod 1.7.0
           haxelib --quiet install hscript
           haxelib --quiet install hxcpp-debug-server
           haxelib --quiet install extension-androidtools 1.4.0
@@ -56,8 +56,8 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
-          haxelib set lime 7.9.0
-          haxelib set openfl 9.1.0
+          haxelib set lime 8.0.1
+          haxelib set openfl 9.2.1
           haxelib list
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
@@ -81,13 +81,13 @@ jobs:
 
       - name: Install Haxelibs
         run: |
-          haxelib --quiet install lime 7.9.0
-          haxelib --quiet install openfl 9.1.0
-          haxelib --quiet --never install flixel 5.6.0
+          haxelib --quiet install lime
+          haxelib --quiet install openfl
+          haxelib --quiet --never install flixel 5.2.2
           haxelib --quiet --never run lime setup
           haxelib --quiet install flixel-ui
-          haxelib --quiet install flixel-addons
-          haxelib --quiet install polymod
+          haxelib --quiet git flixel-addons https://github.com/HaxeFlixel/flixel-addons.git dev
+          haxelib --quiet install polymod 1.7.0
           haxelib --quiet install hscript
           haxelib --quiet install hxcpp-debug-server
           haxelib --quiet git spine https://github.com/jeremyfa/spine-hx.git
@@ -97,8 +97,8 @@ jobs:
       - name: Setup Lime
         run: |
           haxelib run lime setup -alias -y
-          haxelib set lime 7.9.0
-          haxelib set openfl 9.1.0
+          haxelib set lime 8.0.1
+          haxelib set openfl 9.2.1
           haxelib list
 
       - name: Compile
