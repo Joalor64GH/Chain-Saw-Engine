@@ -36,7 +36,7 @@ class Main extends Sprite
 
 		SUtil.check();
 
-		game = new FlxGame(gameWidth, gameHeight, TitleState, zoom, 60, 60, true, false);
+		game = new FlxGame(gameWidth, gameHeight, TitleState, #if (flixel < "5.0.0") zoom, #end 60, 60, true, false);
 		addChild(game);
 
 		overlay = new Overlay(10, 10, 0xFFFFFF);
@@ -47,7 +47,7 @@ class Main extends Sprite
 		toast = new ToastCore();
 		addChild(toast);
 
-                #if cpp
+		#if cpp
 		cpp.NativeGc.enable(true);
 		cpp.NativeGc.run(true);
 		#end
